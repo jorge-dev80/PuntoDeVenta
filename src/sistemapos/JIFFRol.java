@@ -34,8 +34,8 @@ public class JIFFRol extends javax.swing.JInternalFrame {
         jBRetroceder = new javax.swing.JButton();
         jBAvanzar = new javax.swing.JButton();
         jBEditar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLRol = new javax.swing.JLabel();
+        jTFRol = new javax.swing.JTextField();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -72,11 +72,11 @@ public class JIFFRol extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 20, -1, -1));
 
-        jLabel1.setText("Rol:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jLRol.setText("Rol:");
+        getContentPane().add(jLRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 100, -1, -1));
+        jTFRol.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jTFRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -94,7 +94,7 @@ public class JIFFRol extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBGuardarCerrar;
     private javax.swing.JButton jBGuardarNuevo;
     private javax.swing.JButton jBRetroceder;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLRol;
+    private javax.swing.JTextField jTFRol;
     // End of variables declaration//GEN-END:variables
 }
