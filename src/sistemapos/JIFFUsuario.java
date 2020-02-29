@@ -27,121 +27,121 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jBGuardarNuevo = new javax.swing.JButton();
+        jBGuardarCerrar = new javax.swing.JButton();
+        jBAgregar = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
+        jBRetroceder = new javax.swing.JButton();
+        jBAvanzar = new javax.swing.JButton();
+        jBEditar = new javax.swing.JButton();
+        jLDescripcion = new javax.swing.JLabel();
+        jLNombre = new javax.swing.JLabel();
+        jLPassword = new javax.swing.JLabel();
+        jLCPassword = new javax.swing.JLabel();
+        jLRol = new javax.swing.JLabel();
+        jLEmpresa = new javax.swing.JLabel();
+        jTFNombre = new javax.swing.JTextField();
+        jTFPassword = new javax.swing.JTextField();
+        jTFCPassword = new javax.swing.JTextField();
+        jCBRol = new javax.swing.JComboBox<>();
+        jCBEmpresa = new javax.swing.JComboBox<>();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Guardar y Nuevo");
-        jButton1.setPreferredSize(new java.awt.Dimension(120, 32));
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jBGuardarNuevo.setText("Guardar y Nuevo");
+        jBGuardarNuevo.setPreferredSize(new java.awt.Dimension(120, 32));
+        getContentPane().add(jBGuardarNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jButton2.setText("Guardar y Cerrar");
-        jButton2.setPreferredSize(new java.awt.Dimension(120, 32));
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+        jBGuardarCerrar.setText("Guardar y Cerrar");
+        jBGuardarCerrar.setPreferredSize(new java.awt.Dimension(120, 32));
+        getContentPane().add(jBGuardarCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
-        jButton3.setPreferredSize(new java.awt.Dimension(32, 32));
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+        jBAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
+        jBAgregar.setPreferredSize(new java.awt.Dimension(32, 32));
+        getContentPane().add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
-        jButton4.setPreferredSize(new java.awt.Dimension(32, 32));
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 20, -1, -1));
+        jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
+        jBEliminar.setPreferredSize(new java.awt.Dimension(32, 32));
+        getContentPane().add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 20, -1, -1));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retroceder.png"))); // NOI18N
-        jButton5.setPreferredSize(new java.awt.Dimension(32, 32));
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 20, -1, -1));
+        jBRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retroceder.png"))); // NOI18N
+        jBRetroceder.setPreferredSize(new java.awt.Dimension(32, 32));
+        getContentPane().add(jBRetroceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 20, -1, -1));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/avanzar.png"))); // NOI18N
-        jButton6.setPreferredSize(new java.awt.Dimension(32, 32));
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 20, -1, -1));
+        jBAvanzar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/avanzar.png"))); // NOI18N
+        jBAvanzar.setPreferredSize(new java.awt.Dimension(32, 32));
+        getContentPane().add(jBAvanzar, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 20, -1, -1));
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
-        jButton7.setPreferredSize(new java.awt.Dimension(32, 32));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
+        jBEditar.setPreferredSize(new java.awt.Dimension(32, 32));
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jBEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 20, -1, -1));
+        getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 20, -1, -1));
 
-        jLabel1.setText("Llenar todos los campos");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jLDescripcion.setText("Llenar todos los campos");
+        getContentPane().add(jLDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        jLabel2.setText("Nombre:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        jLNombre.setText("Nombre:");
+        getContentPane().add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
-        jLabel3.setText("Contraseña:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jLPassword.setText("Contraseña:");
+        getContentPane().add(jLPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        jLabel4.setText("Confirmar contraseña:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+        jLCPassword.setText("Confirmar contraseña:");
+        getContentPane().add(jLCPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
 
-        jLabel5.setText("Rol:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        jLRol.setText("Rol:");
+        getContentPane().add(jLRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
-        jLabel6.setText("Empresa autorizada:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+        jLEmpresa.setText("Empresa autorizada:");
+        getContentPane().add(jLEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 150, -1, -1));
+        jTFNombre.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 150, -1, -1));
 
-        jTextField2.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 200, -1, -1));
+        jTFPassword.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jTFPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 200, -1, -1));
 
-        jTextField3.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 250, -1, -1));
+        jTFCPassword.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jTFCPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 250, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno" }));
-        jComboBox1.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 300, -1, -1));
+        jCBRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno" }));
+        jCBRol.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jCBRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 300, -1, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno" }));
-        jComboBox2.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 350, -1, -1));
+        jCBEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno" }));
+        jCBEmpresa.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jCBEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 350, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jBEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jBAgregar;
+    private javax.swing.JButton jBAvanzar;
+    private javax.swing.JButton jBEditar;
+    private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBGuardarCerrar;
+    private javax.swing.JButton jBGuardarNuevo;
+    private javax.swing.JButton jBRetroceder;
+    private javax.swing.JComboBox<String> jCBEmpresa;
+    private javax.swing.JComboBox<String> jCBRol;
+    private javax.swing.JLabel jLCPassword;
+    private javax.swing.JLabel jLDescripcion;
+    private javax.swing.JLabel jLEmpresa;
+    private javax.swing.JLabel jLNombre;
+    private javax.swing.JLabel jLPassword;
+    private javax.swing.JLabel jLRol;
+    private javax.swing.JTextField jTFCPassword;
+    private javax.swing.JTextField jTFNombre;
+    private javax.swing.JTextField jTFPassword;
     // End of variables declaration//GEN-END:variables
 }
