@@ -46,6 +46,11 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         jCBRol = new javax.swing.JComboBox<>();
         jCBEmpresa = new javax.swing.JComboBox<>();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Módulo Usuario");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBGuardarNuevo.setText("Guardar y Nuevo");

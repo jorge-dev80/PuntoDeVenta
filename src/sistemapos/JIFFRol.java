@@ -37,6 +37,11 @@ public class JIFFRol extends javax.swing.JInternalFrame {
         jLRol = new javax.swing.JLabel();
         jTFRol = new javax.swing.JTextField();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Módulo Rol");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBGuardarNuevo.setText("Guardar y Nuevo");
