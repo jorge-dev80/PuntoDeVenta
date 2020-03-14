@@ -101,6 +101,29 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         return valorID;
     }
     
+    //ULTIMO VALOR REGISTRADO
+    public void ultimoValor() {
+        try {
+            conexion.conectar();
+            String usuario, password;
+            int rol, empresa;
+            rs = st.executeQuery("select * from tbl_registro order by id_usuario asc");
+            if(rs.last()){
+                usuario = rs.getString("id_usuario")+".-"+rs.getString("usuario");
+                jTFNombre.setText(""+usuario);
+                password = rs.getString("password");
+                jPFPassword.setText(password);
+                jPFConfirmarPW.setText(password);
+                rol = Integer.parseInt(rs.getString("id_rol"));
+                jCBRol.setSelectedIndex(rol);
+                empresa = Integer.parseInt(rs.getString("id_empresa"));
+                jCBEmpresa.setSelectedIndex(empresa);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -132,6 +155,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBGuardarNuevo.setText("Guardar y Nuevo");
+        jBGuardarNuevo.setEnabled(false);
         jBGuardarNuevo.setPreferredSize(new java.awt.Dimension(120, 32));
         jBGuardarNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +165,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         getContentPane().add(jBGuardarNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jBGuardarCerrar.setText("Guardar y Cerrar");
+        jBGuardarCerrar.setEnabled(false);
         jBGuardarCerrar.setPreferredSize(new java.awt.Dimension(120, 32));
         jBGuardarCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,20 +237,25 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         jLEmpresa.setText("Empresa autorizada:");
         getContentPane().add(jLEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
+        jTFNombre.setEnabled(false);
         jTFNombre.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 150, -1, -1));
 
         jCBRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno" }));
+        jCBRol.setEnabled(false);
         jCBRol.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jCBRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 300, -1, -1));
 
         jCBEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno" }));
+        jCBEmpresa.setEnabled(false);
         jCBEmpresa.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jCBEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 350, -1, -1));
 
+        jPFPassword.setEnabled(false);
         jPFPassword.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jPFPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 200, -1, -1));
 
+        jPFConfirmarPW.setEnabled(false);
         jPFConfirmarPW.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jPFConfirmarPW, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 250, -1, -1));
 
@@ -256,7 +286,23 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         // AGREGAR:
         
-        
+        jTFNombre.setEnabled(true);
+        jPFPassword.setEnabled(true);
+        jPFConfirmarPW.setEnabled(true);
+        jCBRol.setEnabled(true);
+        jCBEmpresa.setEnabled(true);
+        jBGuardarNuevo.setEnabled(true);
+        jBGuardarCerrar.setEnabled(true);
+        jBAgregar.setEnabled(false);
+        jBEliminar.setEnabled(false);
+        jBRetroceder.setEnabled(false);
+        jBAvanzar.setEnabled(false);
+        jBEditar.setEnabled(false);
+        jTFNombre.setText("");
+        jPFPassword.setText("");
+        jPFConfirmarPW.setText("");
+        jCBRol.setSelectedIndex(0);
+        jCBEmpresa.setSelectedIndex(0);
         
     }//GEN-LAST:event_jBAgregarActionPerformed
 
