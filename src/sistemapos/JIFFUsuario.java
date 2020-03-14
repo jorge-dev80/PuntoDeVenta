@@ -1,11 +1,57 @@
 package sistemapos;
 
+import java.sql.*;
+import javax.swing.*;
+
+
 public class JIFFUsuario extends javax.swing.JInternalFrame {
 
+    //CREAMOS VARIABLES PARA MANIPULAR LA BASE DE DATOS
+    static Connection cn;
+    static Statement st;
+    static ResultSet rs;
+    static ResultSet rsaux;
+    boolean editar = false;
+    
+    //INSTANCIA DE LA CLASE ConexionSQL
+    ConexionSQL conexion = new ConexionSQL();
+    
     public JIFFUsuario() {
         initComponents();
+        listaRoles();
+        listaEmpresas();
     }
-
+    
+    //METODO PARA LA LISTA DE ROLES
+    public void listaRoles() {
+        try {
+            conexion.conectar();
+            String roles = "";
+            rs = st.executeQuery("select * from tbl_roles order by id_rol asc");
+            while(rs.next()){
+                roles = rs.getString("id_rol")+".-"+rs.getString("nombre_rol");
+                jCBRol.addItem(roles);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA LA LISTA DE EMPRESAS
+    public void listaEmpresas() {
+        try {
+            conexion.conectar();
+            String empresas = "";
+            rs = st.executeQuery("select * from tbl_empresas order by id_empresa asc");
+            while(rs.next()){
+                empresas= rs.getString("id_empresa")+".-"+rs.getString("nombre_empresa");
+                jCBEmpresa.addItem(empresas);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -24,10 +70,10 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         jLRol = new javax.swing.JLabel();
         jLEmpresa = new javax.swing.JLabel();
         jTFNombre = new javax.swing.JTextField();
-        jTFPassword = new javax.swing.JTextField();
-        jTFCPassword = new javax.swing.JTextField();
         jCBRol = new javax.swing.JComboBox<>();
         jCBEmpresa = new javax.swing.JComboBox<>();
+        jPFPassword = new javax.swing.JPasswordField();
+        jPFConfirmarPW = new javax.swing.JPasswordField();
 
         setClosable(true);
         setIconifiable(true);
@@ -90,12 +136,6 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         jTFNombre.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jTFNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 150, -1, -1));
 
-        jTFPassword.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jTFPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 200, -1, -1));
-
-        jTFCPassword.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jTFCPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 250, -1, -1));
-
         jCBRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno" }));
         jCBRol.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jCBRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 300, -1, -1));
@@ -103,6 +143,12 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         jCBEmpresa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno" }));
         jCBEmpresa.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jCBEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 350, -1, -1));
+
+        jPFPassword.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jPFPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 200, -1, -1));
+
+        jPFConfirmarPW.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jPFConfirmarPW, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 250, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,8 +174,8 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLPassword;
     private javax.swing.JLabel jLRol;
-    private javax.swing.JTextField jTFCPassword;
+    private javax.swing.JPasswordField jPFConfirmarPW;
+    private javax.swing.JPasswordField jPFPassword;
     private javax.swing.JTextField jTFNombre;
-    private javax.swing.JTextField jTFPassword;
     // End of variables declaration//GEN-END:variables
 }
