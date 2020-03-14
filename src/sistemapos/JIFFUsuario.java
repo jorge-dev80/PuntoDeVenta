@@ -176,6 +176,32 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         }
     }
     
+    //METODO PARA EDITAR
+    public void editar() {
+        try{
+            conexion.conectar();
+            String nombre = jTFNombre.getText();
+            String con = jPFPassword.getText();
+            String contra = jPFConfirmarPW.getText();
+            String rol = (String) jCBRol.getSelectedItem();
+            String empresa = (String) jCBEmpresa.getSelectedItem();
+            
+            int idrol = validarID(rol);
+            int idempresa = validarID(empresa);
+            int idusuario = Integer.parseInt(rs.getString("id_usuario"));
+            
+            if(con.equals(contra)){
+                String result = "update tbl_registro set usuario = '"+nombre+"', password = '"+con+"', id_rol = '"+idrol+"', id_empresa = '"+idempresa+"' where id_usuario = "+idusuario;
+                st.execute(result);
+            }else{
+                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al editar\n" + e);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
