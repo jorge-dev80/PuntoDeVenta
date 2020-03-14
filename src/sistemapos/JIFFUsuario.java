@@ -124,6 +124,58 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         }
     }
     
+    //METODO PARA RETROCEDER EN LAS CONSULTAS
+    public void retroceder() {
+        try {
+            conexion.conectar();
+            String usuario, password;
+            int rol, empresa;
+            if(rs.previous()){
+                usuario = rs.getString("id_usuario")+".-"+rs.getString("usuario");
+                jTFNombre.setText(""+usuario);
+                password = rs.getString("password");
+                jPFPassword.setText(password);
+                jPFConfirmarPW.setText(password);
+                rol = Integer.parseInt(rs.getString("id_rol"));
+                jCBRol.setSelectedIndex(rol);
+                empresa = Integer.parseInt(rs.getString("id_empresa"));
+                jCBEmpresa.setSelectedIndex(empresa);
+            }else{
+                rs.next();
+                JOptionPane.showMessageDialog(null, "No hay mas registros");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA AVANZAR EN LAS CONSULTAS
+    public void avanzar() {
+        try {
+            conexion.conectar();
+            String usuario, password;
+            int rol, empresa;
+            if(rs.next()){
+                usuario = rs.getString("id_usuario")+".-"+rs.getString("usuario");
+                jTFNombre.setText(""+usuario);
+                password = rs.getString("password");
+                jPFPassword.setText(password);
+                jPFConfirmarPW.setText(password);
+                rol = Integer.parseInt(rs.getString("id_rol"));
+                jCBRol.setSelectedIndex(rol);
+                empresa = Integer.parseInt(rs.getString("id_empresa"));
+                jCBEmpresa.setSelectedIndex(empresa);
+            }else{
+                rs.previous();
+                JOptionPane.showMessageDialog(null, "No hay mas registros");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
