@@ -202,6 +202,21 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         }
     }
     
+    //METODO PARA ELIMINAR
+    public void eliminar() { 
+        try{
+            int opcion = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este registro");
+            if(opcion == 0){
+                /*int idusuario = Integer.parseInt(rs.getString("id_usuario"));
+                String result = "delete from tbl_registro where id_usuario = "+idusuario;
+                st.execute(result);*/
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar\n" + e);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
