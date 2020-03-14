@@ -53,7 +53,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
     }
     
     //METODO PARA INGRESAR DATOS EN JIIFUsuarios
-    public void insertar(){
+    public void insertar() {
         try{
             conexion.conectar();
             String nombre = jTFNombre.getText();
@@ -203,7 +203,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
     }
     
     //METODO PARA ELIMINAR
-    public void eliminar() { 
+    public void eliminar() {
         try{
             int opcion = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este registro");
             if(opcion == 0){
@@ -358,21 +358,43 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         // EDITAR:
         
-        
+        jTFNombre.setEnabled(true);
+        jPFPassword.setEnabled(true);
+        jPFConfirmarPW.setEnabled(true);
+        jCBRol.setEnabled(true);
+        jCBEmpresa.setEnabled(true);
+        jBGuardarNuevo.setEnabled(false);
+        jBGuardarCerrar.setEnabled(true);
+        jBAgregar.setEnabled(false);
+        jBEliminar.setEnabled(false);
+        jBRetroceder.setEnabled(false);
+        jBAvanzar.setEnabled(false);
+        jBEditar.setEnabled(false);
+        editar = true;
         
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBGuardarCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarCerrarActionPerformed
         // GUARDAR Y CERRAR:
         
-        
+        if(editar){
+            editar();
+        }else{
+            insertar();
+        }
+        this.show(false);
         
     }//GEN-LAST:event_jBGuardarCerrarActionPerformed
 
     private void jBGuardarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarNuevoActionPerformed
         // GUARDAR Y NUEVO:
         
-        
+        insertar();
+        jTFNombre.setText("");
+        jPFPassword.setText("");
+        jPFConfirmarPW.setText("");
+        jCBRol.setSelectedIndex(0);
+        jCBEmpresa.setSelectedIndex(0);
         
     }//GEN-LAST:event_jBGuardarNuevoActionPerformed
 
@@ -402,21 +424,21 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // ELIMINAR:
         
-        
+        eliminar();
         
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetrocederActionPerformed
         // RETROCEDER:
         
-        
+        retroceder();
         
     }//GEN-LAST:event_jBRetrocederActionPerformed
 
     private void jBAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAvanzarActionPerformed
         // AVANZAR:
         
-        
+        avanzar();
         
     }//GEN-LAST:event_jBAvanzarActionPerformed
 
