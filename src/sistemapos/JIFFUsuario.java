@@ -52,6 +52,55 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         }
     }
     
+    //METODO PARA INGRESAR DATOS EN JIIFUsuarios
+    public void insertar(){
+        try{
+            conexion.conectar();
+            String nombre = jTFNombre.getText();
+            String con = jPFPassword.getText();
+            String contra = jPFConfirmarPW.getText();
+            String rol = (String) jCBRol.getSelectedItem();
+            String empresa = (String) jCBEmpresa.getSelectedItem();
+            
+            int idrol = validarID(rol);
+            int idempresa = validarID(empresa);
+            
+            if(con.equals(contra)){
+                String result = "insert into tbl_registro values ('0','"+nombre+"','"+con+"','"+idrol+"','"+idempresa+"')";
+                st.execute(result);
+                cn.close();
+            }else{
+                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+                cn.close();
+            }
+            
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Error ingresando datos\n" + e);
+        }
+    }
+    
+    //METODO PARA VALIDAR EL ID
+    public int validarID(String cadena){
+        
+        //VARIABLES PARA FUNCIONES DE VALIDACION
+        String cad = "";
+        int valorID;
+        int puntero = 0;
+        char caracter;
+        
+        caracter = cadena.charAt(puntero);
+
+        while(caracter != '.'){
+            cad = cad+""+caracter;
+            puntero = puntero + 1;
+            caracter = cadena.charAt(puntero);
+        }
+        
+        valorID = Integer.parseInt(cad);
+        return valorID;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -84,26 +133,56 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
 
         jBGuardarNuevo.setText("Guardar y Nuevo");
         jBGuardarNuevo.setPreferredSize(new java.awt.Dimension(120, 32));
+        jBGuardarNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarNuevoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBGuardarNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jBGuardarCerrar.setText("Guardar y Cerrar");
         jBGuardarCerrar.setPreferredSize(new java.awt.Dimension(120, 32));
+        jBGuardarCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarCerrarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBGuardarCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
         jBAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
         jBAgregar.setPreferredSize(new java.awt.Dimension(32, 32));
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
         jBEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
         jBEliminar.setPreferredSize(new java.awt.Dimension(32, 32));
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 20, -1, -1));
 
         jBRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retroceder.png"))); // NOI18N
         jBRetroceder.setPreferredSize(new java.awt.Dimension(32, 32));
+        jBRetroceder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRetrocederActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBRetroceder, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 20, -1, -1));
 
         jBAvanzar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/avanzar.png"))); // NOI18N
         jBAvanzar.setPreferredSize(new java.awt.Dimension(32, 32));
+        jBAvanzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAvanzarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jBAvanzar, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 20, -1, -1));
 
         jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
@@ -154,8 +233,53 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-        // TODO add your handling code here:
+        // EDITAR:
+        
+        
+        
     }//GEN-LAST:event_jBEditarActionPerformed
+
+    private void jBGuardarCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarCerrarActionPerformed
+        // GUARDAR Y CERRAR:
+        
+        
+        
+    }//GEN-LAST:event_jBGuardarCerrarActionPerformed
+
+    private void jBGuardarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarNuevoActionPerformed
+        // GUARDAR Y NUEVO:
+        
+        
+        
+    }//GEN-LAST:event_jBGuardarNuevoActionPerformed
+
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        // AGREGAR:
+        
+        
+        
+    }//GEN-LAST:event_jBAgregarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        // ELIMINAR:
+        
+        
+        
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetrocederActionPerformed
+        // RETROCEDER:
+        
+        
+        
+    }//GEN-LAST:event_jBRetrocederActionPerformed
+
+    private void jBAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAvanzarActionPerformed
+        // AVANZAR:
+        
+        
+        
+    }//GEN-LAST:event_jBAvanzarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
