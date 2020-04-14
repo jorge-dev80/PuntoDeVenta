@@ -6,11 +6,7 @@ import javax.swing.*;
 
 public class JIFFUsuario extends javax.swing.JInternalFrame {
 
-    //CREAMOS VARIABLES PARA MANIPULAR LA BASE DE DATOS
-    static Connection cn;
-    static Statement st;
-    static ResultSet rs;
-    static ResultSet rsaux;
+    //CREAMOS VARIABLES
     boolean editar = false;
     
     //INSTANCIA DE LA CLASE ConexionSQL
@@ -27,9 +23,9 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         try {
             conexion.conectar();
             String roles = "";
-            rs = st.executeQuery("select * from tbl_roles order by id_rol asc");
-            while(rs.next()){
-                roles = rs.getString("id_rol")+".-"+rs.getString("nombre_rol");
+            conexion.rs = conexion.st.executeQuery("select * from tbl_roles order by id_rol asc");
+            while(conexion.rs.next()){
+                roles = conexion.rs.getString("id_rol")+".-"+conexion.rs.getString("nombre_rol");
                 jCBRol.addItem(roles);
             }
         } catch (Exception e) {
@@ -42,9 +38,9 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         try {
             conexion.conectar();
             String empresas = "";
-            rs = st.executeQuery("select * from tbl_empresas order by id_empresa asc");
-            while(rs.next()){
-                empresas= rs.getString("id_empresa")+".-"+rs.getString("nombre_empresa");
+            conexion.rs = conexion.st.executeQuery("select * from tbl_empresas order by id_empresa asc");
+            while(conexion.rs.next()){
+                empresas= conexion.rs.getString("id_empresa")+".-"+conexion.rs.getString("nombre_empresa");
                 jCBEmpresa.addItem(empresas);
             }
         } catch (Exception e) {
@@ -67,11 +63,11 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
             
             if(con.equals(contra)){
                 String result = "insert into tbl_registro values ('0','"+nombre+"','"+con+"','"+idrol+"','"+idempresa+"')";
-                st.execute(result);
-                cn.close();
+                conexion.st.execute(result);
+                conexion.cn.close();
             }else{
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
-                cn.close();
+                conexion.cn.close();
             }
             
         }
@@ -107,16 +103,16 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
             conexion.conectar();
             String usuario, password;
             int rol, empresa;
-            rs = st.executeQuery("select * from tbl_registro order by id_usuario asc");
-            if(rs.last()){
-                usuario = rs.getString("id_usuario")+".-"+rs.getString("usuario");
+            conexion.rs = conexion.st.executeQuery("select * from tbl_registro order by id_usuario asc");
+            if(conexion.rs.last()){
+                usuario = conexion.rs.getString("id_usuario")+".-"+conexion.rs.getString("usuario");
                 jTFNombre.setText(""+usuario);
-                password = rs.getString("password");
+                password = conexion.rs.getString("password");
                 jPFPassword.setText(password);
                 jPFConfirmarPW.setText(password);
-                rol = Integer.parseInt(rs.getString("id_rol"));
+                rol = Integer.parseInt(conexion.rs.getString("id_rol"));
                 jCBRol.setSelectedIndex(rol);
-                empresa = Integer.parseInt(rs.getString("id_empresa"));
+                empresa = Integer.parseInt(conexion.rs.getString("id_empresa"));
                 jCBEmpresa.setSelectedIndex(empresa);
             }
         } catch (Exception e) {
@@ -130,18 +126,18 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
             conexion.conectar();
             String usuario, password;
             int rol, empresa;
-            if(rs.previous()){
-                usuario = rs.getString("id_usuario")+".-"+rs.getString("usuario");
+            if(conexion.rs.previous()){
+                usuario = conexion.rs.getString("id_usuario")+".-"+conexion.rs.getString("usuario");
                 jTFNombre.setText(""+usuario);
-                password = rs.getString("password");
+                password = conexion.rs.getString("password");
                 jPFPassword.setText(password);
                 jPFConfirmarPW.setText(password);
-                rol = Integer.parseInt(rs.getString("id_rol"));
+                rol = Integer.parseInt(conexion.rs.getString("id_rol"));
                 jCBRol.setSelectedIndex(rol);
-                empresa = Integer.parseInt(rs.getString("id_empresa"));
+                empresa = Integer.parseInt(conexion.rs.getString("id_empresa"));
                 jCBEmpresa.setSelectedIndex(empresa);
             }else{
-                rs.next();
+                conexion.rs.next();
                 JOptionPane.showMessageDialog(null, "No hay mas registros");
             }
             
@@ -156,18 +152,18 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
             conexion.conectar();
             String usuario, password;
             int rol, empresa;
-            if(rs.next()){
-                usuario = rs.getString("id_usuario")+".-"+rs.getString("usuario");
+            if(conexion.rs.next()){
+                usuario = conexion.rs.getString("id_usuario")+".-"+conexion.rs.getString("usuario");
                 jTFNombre.setText(""+usuario);
-                password = rs.getString("password");
+                password = conexion.rs.getString("password");
                 jPFPassword.setText(password);
                 jPFConfirmarPW.setText(password);
-                rol = Integer.parseInt(rs.getString("id_rol"));
+                rol = Integer.parseInt(conexion.rs.getString("id_rol"));
                 jCBRol.setSelectedIndex(rol);
-                empresa = Integer.parseInt(rs.getString("id_empresa"));
+                empresa = Integer.parseInt(conexion.rs.getString("id_empresa"));
                 jCBEmpresa.setSelectedIndex(empresa);
             }else{
-                rs.previous();
+                conexion.rs.previous();
                 JOptionPane.showMessageDialog(null, "No hay mas registros");
             }
             
@@ -188,11 +184,11 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
             
             int idrol = validarID(rol);
             int idempresa = validarID(empresa);
-            int idusuario = Integer.parseInt(rs.getString("id_usuario"));
+            int idusuario = Integer.parseInt(conexion.rs.getString("id_usuario"));
             
             if(con.equals(contra)){
                 String result = "update tbl_registro set usuario = '"+nombre+"', password = '"+con+"', id_rol = '"+idrol+"', id_empresa = '"+idempresa+"' where id_usuario = "+idusuario;
-                st.execute(result);
+                conexion.st.execute(result);
             }else{
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
             }
