@@ -16,6 +16,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         initComponents();
         listaRoles();
         listaEmpresas();
+        ultimoValor();
     }
     
     //METODO PARA LA LISTA DE ROLES
@@ -28,6 +29,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
                 roles = conexion.rs.getString("id_rol")+".-"+conexion.rs.getString("nombre_rol");
                 jCBRol.addItem(roles);
             }
+            conexion.cn.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
         }
@@ -43,6 +45,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
                 empresas= conexion.rs.getString("id_empresa")+".-"+conexion.rs.getString("nombre_empresa");
                 jCBEmpresa.addItem(empresas);
             }
+            conexion.cn.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
         }
@@ -64,12 +67,10 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
             if(con.equals(contra)){
                 String result = "insert into tbl_registro values ('0','"+nombre+"','"+con+"','"+idrol+"','"+idempresa+"')";
                 conexion.st.execute(result);
-                conexion.cn.close();
             }else{
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
-                conexion.cn.close();
             }
-            
+            conexion.cn.close();
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,"Error ingresando datos\n" + e);
@@ -115,6 +116,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
                 empresa = Integer.parseInt(conexion.rs.getString("id_empresa"));
                 jCBEmpresa.setSelectedIndex(empresa);
             }
+            conexion.cn.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
         }
@@ -140,7 +142,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
                 conexion.rs.next();
                 JOptionPane.showMessageDialog(null, "No hay mas registros");
             }
-            
+            conexion.cn.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
         }
@@ -166,7 +168,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
                 conexion.rs.previous();
                 JOptionPane.showMessageDialog(null, "No hay mas registros");
             }
-            
+            conexion.cn.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
         }
@@ -192,6 +194,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
             }else{
                 JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
             }
+            conexion.cn.close();
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error al editar\n" + e);
@@ -201,12 +204,14 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
     //METODO PARA ELIMINAR
     public void eliminar() {
         try{
+            conexion.conectar();
             int opcion = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este registro");
             if(opcion == 0){
                 /*int idusuario = Integer.parseInt(rs.getString("id_usuario"));
                 String result = "delete from tbl_registro where id_usuario = "+idusuario;
                 st.execute(result);*/
             }
+            conexion.cn.close();
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error al eliminar\n" + e);
@@ -235,12 +240,14 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         jCBEmpresa = new javax.swing.JComboBox<>();
         jPFPassword = new javax.swing.JPasswordField();
         jPFConfirmarPW = new javax.swing.JPasswordField();
+        jPFondo = new javax.swing.JPanel();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Módulo Usuario");
+        setPreferredSize(new java.awt.Dimension(550, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBGuardarNuevo.setText("Guardar y Nuevo");
@@ -347,6 +354,9 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
         jPFConfirmarPW.setEnabled(false);
         jPFConfirmarPW.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jPFConfirmarPW, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 250, -1, -1));
+
+        jPFondo.setPreferredSize(new java.awt.Dimension(525, 450));
+        getContentPane().add(jPFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -457,6 +467,7 @@ public class JIFFUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLRol;
     private javax.swing.JPasswordField jPFConfirmarPW;
     private javax.swing.JPasswordField jPFPassword;
+    private javax.swing.JPanel jPFondo;
     private javax.swing.JTextField jTFNombre;
     // End of variables declaration//GEN-END:variables
 }
