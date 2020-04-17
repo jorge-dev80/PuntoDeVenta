@@ -26,6 +26,11 @@ public class JIFFEmpresa extends javax.swing.JInternalFrame {
         jTFRFC = new javax.swing.JTextField();
         jTFGiro = new javax.swing.JTextField();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Módulo Empresa");
         setPreferredSize(new java.awt.Dimension(550, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
