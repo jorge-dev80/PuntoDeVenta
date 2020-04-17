@@ -11,12 +11,14 @@ public class JFFPantallaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jMBBarraDeNavegacion = new javax.swing.JMenuBar();
+        jMConfiguraciones = new javax.swing.JMenu();
+        jMIUsuarios = new javax.swing.JMenuItem();
+        jMIRoles = new javax.swing.JMenuItem();
+        jMIEmpresas = new javax.swing.JMenuItem();
+        jMIPrivilegios = new javax.swing.JMenuItem();
+        jMModulos = new javax.swing.JMenu();
+        jMAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -34,33 +36,49 @@ public class JFFPantallaPrincipal extends javax.swing.JFrame {
             .addGap(0, 478, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Configuraciones");
+        jMConfiguraciones.setText("Configuraciones");
 
-        jMenuItem1.setText("Usuarios");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMIUsuarios.setText("Usuarios");
+        jMIUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMIUsuariosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMConfiguraciones.add(jMIUsuarios);
 
-        jMenuItem2.setText("Roles");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMIRoles.setText("Roles");
+        jMIRoles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMIRolesActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMConfiguraciones.add(jMIRoles);
 
-        jMenuBar1.add(jMenu1);
+        jMIEmpresas.setText("Empresas");
+        jMIEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIEmpresasActionPerformed(evt);
+            }
+        });
+        jMConfiguraciones.add(jMIEmpresas);
 
-        jMenu2.setText("Módulos");
-        jMenuBar1.add(jMenu2);
+        jMIPrivilegios.setText("Privilegios");
+        jMIPrivilegios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIPrivilegiosActionPerformed(evt);
+            }
+        });
+        jMConfiguraciones.add(jMIPrivilegios);
 
-        jMenu3.setText("Ayuda");
-        jMenuBar1.add(jMenu3);
+        jMBBarraDeNavegacion.add(jMConfiguraciones);
 
-        setJMenuBar(jMenuBar1);
+        jMModulos.setText("Módulos");
+        jMBBarraDeNavegacion.add(jMModulos);
+
+        jMAyuda.setText("Ayuda");
+        jMBBarraDeNavegacion.add(jMAyuda);
+
+        setJMenuBar(jMBBarraDeNavegacion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,22 +94,38 @@ public class JFFPantallaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMIRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIRolesActionPerformed
         // ROLES
         JIFFRol moduloRol = new JIFFRol();
         escritorio.add(moduloRol);
         moduloRol.show();
         
         
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMIRolesActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMIUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIUsuariosActionPerformed
         // USUARIOS
         JIFFUsuario moduloUsuario = new JIFFUsuario();
         escritorio.add(moduloUsuario);
         moduloUsuario.show();
         
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMIUsuariosActionPerformed
+
+    private void jMIEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIEmpresasActionPerformed
+        // EMPRESAS
+        JIFFEmpresa moduloEmpresa = new JIFFEmpresa();
+        escritorio.add(moduloEmpresa);
+        moduloEmpresa.show();
+        
+    }//GEN-LAST:event_jMIEmpresasActionPerformed
+
+    private void jMIPrivilegiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIPrivilegiosActionPerformed
+        // PRIVILEGIOS
+        JIFFPrivilegio moduloPrivilegio = new JIFFPrivilegio();
+        escritorio.add(moduloPrivilegio);
+        moduloPrivilegio.show();
+        
+    }//GEN-LAST:event_jMIPrivilegiosActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -127,11 +161,13 @@ public class JFFPantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenu jMAyuda;
+    private javax.swing.JMenuBar jMBBarraDeNavegacion;
+    private javax.swing.JMenu jMConfiguraciones;
+    private javax.swing.JMenuItem jMIEmpresas;
+    private javax.swing.JMenuItem jMIPrivilegios;
+    private javax.swing.JMenuItem jMIRoles;
+    private javax.swing.JMenuItem jMIUsuarios;
+    private javax.swing.JMenu jMModulos;
     // End of variables declaration//GEN-END:variables
 }

@@ -101,11 +101,11 @@ public class JIFFPrivilegio extends javax.swing.JInternalFrame {
         jLPrivilegio.setText("Privilegio:");
         getContentPane().add(jLPrivilegio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
-        jTFIDPrivilegio.setEditable(false);
+        jTFIDPrivilegio.setEnabled(false);
         jTFIDPrivilegio.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jTFIDPrivilegio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
 
-        jTFPrivilegio.setEditable(false);
+        jTFPrivilegio.setEnabled(false);
         jTFPrivilegio.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jTFPrivilegio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, -1, -1));
 
