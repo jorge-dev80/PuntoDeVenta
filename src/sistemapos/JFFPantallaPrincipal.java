@@ -17,6 +17,7 @@ public class JFFPantallaPrincipal extends javax.swing.JFrame {
         jMIRoles = new javax.swing.JMenuItem();
         jMIEmpresas = new javax.swing.JMenuItem();
         jMIPrivilegios = new javax.swing.JMenuItem();
+        jMIPaises = new javax.swing.JMenuItem();
         jMModulos = new javax.swing.JMenu();
         jMAyuda = new javax.swing.JMenu();
 
@@ -69,6 +70,14 @@ public class JFFPantallaPrincipal extends javax.swing.JFrame {
             }
         });
         jMConfiguraciones.add(jMIPrivilegios);
+
+        jMIPaises.setText("Países");
+        jMIPaises.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIPaisesActionPerformed(evt);
+            }
+        });
+        jMConfiguraciones.add(jMIPaises);
 
         jMBBarraDeNavegacion.add(jMConfiguraciones);
 
@@ -127,6 +136,14 @@ public class JFFPantallaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMIPrivilegiosActionPerformed
 
+    private void jMIPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIPaisesActionPerformed
+        // PAISES
+        JIFFPais moduloPais = new JIFFPais();
+        escritorio.add(moduloPais);
+        moduloPais.show();
+        
+    }//GEN-LAST:event_jMIPaisesActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -165,6 +182,7 @@ public class JFFPantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMBBarraDeNavegacion;
     private javax.swing.JMenu jMConfiguraciones;
     private javax.swing.JMenuItem jMIEmpresas;
+    private javax.swing.JMenuItem jMIPaises;
     private javax.swing.JMenuItem jMIPrivilegios;
     private javax.swing.JMenuItem jMIRoles;
     private javax.swing.JMenuItem jMIUsuarios;
