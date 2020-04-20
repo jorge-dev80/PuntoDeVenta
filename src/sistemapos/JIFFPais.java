@@ -34,19 +34,19 @@ public class JIFFPais extends javax.swing.JInternalFrame {
         jBRetroceder = new javax.swing.JButton();
         jBAvanzar = new javax.swing.JButton();
         jBEditar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jLIDPais = new javax.swing.JLabel();
+        jLNomAbr = new javax.swing.JLabel();
+        jLNomCom = new javax.swing.JLabel();
+        jTFIDPais = new javax.swing.JTextField();
+        jTFNomAbr = new javax.swing.JTextField();
+        jTFNomCom = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Módulo De Países");
-        setPreferredSize(new java.awt.Dimension(550, 400));
+        setPreferredSize(new java.awt.Dimension(550, 300));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBGuardarNuevo.setText("Guardar y Nuevo");
@@ -114,26 +114,26 @@ public class JIFFPais extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 20, -1, -1));
 
-        jLabel1.setText("ID País:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jLIDPais.setText("ID País:");
+        getContentPane().add(jLIDPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        jLabel2.setText("Nombre abreviado:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        jLNomAbr.setText("Nombre abreviado:");
+        getContentPane().add(jLNomAbr, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
-        jLabel3.setText("Nombre completo:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jLNomCom.setText("Nombre completo:");
+        getContentPane().add(jLNomCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        jTextField1.setEnabled(false);
-        jTextField1.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 100, -1, -1));
+        jTFIDPais.setEnabled(false);
+        jTFIDPais.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jTFIDPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 100, -1, -1));
 
-        jTextField2.setEnabled(false);
-        jTextField2.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 150, -1, -1));
+        jTFNomAbr.setEnabled(false);
+        jTFNomAbr.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jTFNomAbr, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 150, -1, -1));
 
-        jTextField3.setEnabled(false);
-        jTextField3.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 200, -1, -1));
+        jTFNomCom.setEnabled(false);
+        jTFNomCom.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(jTFNomCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 200, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -234,11 +234,11 @@ public class JIFFPais extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBGuardarCerrar;
     private javax.swing.JButton jBGuardarNuevo;
     private javax.swing.JButton jBRetroceder;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel jLIDPais;
+    private javax.swing.JLabel jLNomAbr;
+    private javax.swing.JLabel jLNomCom;
+    private javax.swing.JTextField jTFIDPais;
+    private javax.swing.JTextField jTFNomAbr;
+    private javax.swing.JTextField jTFNomCom;
     // End of variables declaration//GEN-END:variables
 }
