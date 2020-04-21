@@ -1,9 +1,134 @@
 package sistemapos;
 
+import java.sql.*;
+import javax.swing.*;
+
+
 public class JIFFPais extends javax.swing.JInternalFrame {
 
+    //CREAMOS VARIABLES
+    boolean editar = false;
+    
+    //INSTANCIA DE LA CLASE ConexionSQL
+    ConexionSQL conexion = new ConexionSQL();
+    
     public JIFFPais() {
         initComponents();
+        ultimoValor();
+    }
+    
+    //METODO PARA INGRESAR DATOS EN JIIFUsuarios
+    public void insertar() {
+        try{
+            conexion.conectar();
+            String nombreAbr = jTFNomAbr.getText();
+            String nombreCom = jTFNomCom.getText();
+            String result = "insert into tbl_catalogo_paises values ('0','"+nombreAbr+"','"+nombreCom+"')";
+            conexion.st.execute(result);
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Error ingresando datos\n" + e);
+        }
+    }
+    
+    //ULTIMO VALOR REGISTRADO
+    public void ultimoValor() {
+        try {
+            conexion.conectar();
+            int idpais;
+            String nombreAbr, nombreCom;
+            conexion.rs = conexion.st.executeQuery("select * from tbl_catalogo_paises order by int_id_pais asc");
+            if(conexion.rs.last()){
+                idpais = Integer.parseInt(conexion.rs.getString("int_id_pais"));
+                jTFIDPais.setText(idpais+"");
+                nombreAbr = conexion.rs.getString("vchr_abrev_pais");
+                jTFNomAbr.setText(nombreAbr);
+                nombreCom = conexion.rs.getString("vchr_descripcion_pais");
+                jTFNomCom.setText(nombreCom);
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA RETROCEDER EN LAS CONSULTAS
+    public void retroceder() {
+        try {
+            conexion.conectar();
+            int idpais;
+            String nombreAbr, nombreCom;
+            if(conexion.rs.previous()){
+                idpais = Integer.parseInt(conexion.rs.getString("int_id_pais"));
+                jTFIDPais.setText(idpais+"");
+                nombreAbr = conexion.rs.getString("vchr_abrev_pais");
+                jTFNomAbr.setText(nombreAbr);
+                nombreCom = conexion.rs.getString("vchr_descripcion_pais");
+                jTFNomCom.setText(nombreCom);
+            }else{
+                conexion.rs.next();
+                JOptionPane.showMessageDialog(null, "No hay mas registros");
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA AVANZAR EN LAS CONSULTAS
+    public void avanzar() {
+        try {
+            conexion.conectar();
+            int idpais;
+            String nombreAbr, nombreCom;
+            if(conexion.rs.next()){
+                idpais = Integer.parseInt(conexion.rs.getString("int_id_pais"));
+                jTFIDPais.setText(idpais+"");
+                nombreAbr = conexion.rs.getString("vchr_abrev_pais");
+                jTFNomAbr.setText(nombreAbr);
+                nombreCom = conexion.rs.getString("vchr_descripcion_pais");
+                jTFNomCom.setText(nombreCom);
+            }else{
+                conexion.rs.previous();
+                JOptionPane.showMessageDialog(null, "No hay mas registros");
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA EDITAR
+    public void editar() {
+        try{
+            conexion.conectar();
+            //int idrol = Integer.parseInt(jTFIDRol.getText());
+            //String rol = jTFRol.getText();
+            //String result = "update tbl_roles set nombre_rol = '"+rol+"' where id_rol = "+idrol;
+            //conexion.st.execute(result);
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al editar\n" + e);
+        }
+    }
+    
+    //METODO PARA ELIMINAR
+    public void eliminar() {
+        try{
+            conexion.conectar();
+            int opcion = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este registro");
+            if(opcion == 0){
+                /*int idrol = Integer.parseInt(rs.getString("id_rol"));
+                String result = "delete from tbl_roles where id_rol = "+idrol;
+                st.execute(result);*/
+            }
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar\n" + e);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -124,40 +249,29 @@ public class JIFFPais extends javax.swing.JInternalFrame {
     private void jBGuardarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarNuevoActionPerformed
         // GUARDAR Y NUEVO:
 
-        /*
         insertar();
-        jTFNombre.setText("");
-        jPFPassword.setText("");
-        jPFConfirmarPW.setText("");
-        jCBRol.setSelectedIndex(0);
-        jCBEmpresa.setSelectedIndex(0);
-        */
+        jTFNomAbr.setText("");
+        jTFNomCom.setText("");
 
     }//GEN-LAST:event_jBGuardarNuevoActionPerformed
 
     private void jBGuardarCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarCerrarActionPerformed
         // GUARDAR Y CERRAR:
 
-        /*
         if(editar){
             editar();
         }else{
             insertar();
         }
         this.show(false);
-        */
 
     }//GEN-LAST:event_jBGuardarCerrarActionPerformed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         // AGREGAR:
 
-        /*
-        jTFNombre.setEnabled(true);
-        jPFPassword.setEnabled(true);
-        jPFConfirmarPW.setEnabled(true);
-        jCBRol.setEnabled(true);
-        jCBEmpresa.setEnabled(true);
+        jTFNomAbr.setEnabled(true);
+        jTFNomCom.setEnabled(true);
         jBGuardarNuevo.setEnabled(true);
         jBGuardarCerrar.setEnabled(true);
         jBAgregar.setEnabled(false);
@@ -165,45 +279,38 @@ public class JIFFPais extends javax.swing.JInternalFrame {
         jBRetroceder.setEnabled(false);
         jBAvanzar.setEnabled(false);
         jBEditar.setEnabled(false);
-        jTFNombre.setText("");
-        jPFPassword.setText("");
-        jPFConfirmarPW.setText("");
-        jCBRol.setSelectedIndex(0);
-        jCBEmpresa.setSelectedIndex(0);
-        */
+        jTFIDPais.setText("");
+        jTFNomAbr.setText("");
+        jTFNomCom.setText("");
 
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // ELIMINAR:
 
-        //eliminar();
+        eliminar();
 
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetrocederActionPerformed
         // RETROCEDER:
 
-        //retroceder();
+        retroceder();
 
     }//GEN-LAST:event_jBRetrocederActionPerformed
 
     private void jBAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAvanzarActionPerformed
         // AVANZAR:
 
-        //avanzar();
+        avanzar();
 
     }//GEN-LAST:event_jBAvanzarActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         // EDITAR:
 
-        /*
-        jTFNombre.setEnabled(true);
-        jPFPassword.setEnabled(true);
-        jPFConfirmarPW.setEnabled(true);
-        jCBRol.setEnabled(true);
-        jCBEmpresa.setEnabled(true);
+        jTFNomAbr.setEnabled(true);
+        jTFNomCom.setEnabled(true);
         jBGuardarNuevo.setEnabled(false);
         jBGuardarCerrar.setEnabled(true);
         jBAgregar.setEnabled(false);
@@ -212,7 +319,6 @@ public class JIFFPais extends javax.swing.JInternalFrame {
         jBAvanzar.setEnabled(false);
         jBEditar.setEnabled(false);
         editar = true;
-        */
 
     }//GEN-LAST:event_jBEditarActionPerformed
 
