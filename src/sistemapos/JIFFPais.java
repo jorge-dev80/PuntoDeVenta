@@ -103,10 +103,11 @@ public class JIFFPais extends javax.swing.JInternalFrame {
     public void editar() {
         try{
             conexion.conectar();
-            //int idrol = Integer.parseInt(jTFIDRol.getText());
-            //String rol = jTFRol.getText();
-            //String result = "update tbl_roles set nombre_rol = '"+rol+"' where id_rol = "+idrol;
-            //conexion.st.execute(result);
+            int idpais = Integer.parseInt(jTFIDPais.getText());
+            String nomAbr = jTFNomAbr.getText();
+            String nomCom = jTFNomCom.getText();
+            String result = "update tbl_catalogo_paises set vchr_abrev_pais = '"+nomAbr+"', vchr_descripcion_pais = '"+nomCom+"' where int_id_pais = "+idpais;
+            conexion.st.execute(result);
             conexion.cn.close();
         }
         catch(Exception e){
@@ -120,9 +121,9 @@ public class JIFFPais extends javax.swing.JInternalFrame {
             conexion.conectar();
             int opcion = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este registro");
             if(opcion == 0){
-                /*int idrol = Integer.parseInt(rs.getString("id_rol"));
-                String result = "delete from tbl_roles where id_rol = "+idrol;
-                st.execute(result);*/
+                /*int idpais = Integer.parseInt(conexion.rs.getString("int_id_pais"));
+                String result = "delete from tbl_catalogo_pais where int_id_pais = "+idpais;
+                conexion.st.execute(result);*/
             }
             conexion.cn.close();
         }
