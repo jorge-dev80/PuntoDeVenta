@@ -96,10 +96,10 @@ public class JIFFPrivilegio extends javax.swing.JInternalFrame {
     public void editar() {
         try{
             conexion.conectar();
-            //int idrol = Integer.parseInt(jTFIDRol.getText());
-            //String rol = jTFRol.getText();
-            //String result = "update tbl_roles set nombre_rol = '"+rol+"' where id_rol = "+idrol;
-            //conexion.st.execute(result);
+            int idprivilegio = Integer.parseInt(jTFIDPrivilegio.getText());
+            String privilegio = jTFPrivilegio.getText();
+            String result = "update tbl_privilegios set nombre_privilegio = '"+privilegio+"' where id_privilegio = "+idprivilegio;
+            conexion.st.execute(result);
             conexion.cn.close();
         }
         catch(Exception e){
@@ -113,9 +113,9 @@ public class JIFFPrivilegio extends javax.swing.JInternalFrame {
             conexion.conectar();
             int opcion = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este registro");
             if(opcion == 0){
-                /*int idrol = Integer.parseInt(rs.getString("id_rol"));
-                String result = "delete from tbl_roles where id_rol = "+idrol;
-                st.execute(result);*/
+                /*int idprivilegio = Integer.parseInt(conexion.rs.getString("id_privilegio"));
+                String result = "delete from tbl_privilegios where id_privilegio = "+idprivilegio;
+                conexion.st.execute(result);*/
             }
             conexion.cn.close();
         }
