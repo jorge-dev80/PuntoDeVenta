@@ -1,9 +1,127 @@
 package sistemapos;
 
+import java.sql.*;
+import javax.swing.*;
+
+
 public class JIFFPrivilegio extends javax.swing.JInternalFrame {
 
+    //CREAMOS VARIABLES
+    boolean editar = false;
+    
+    //INSTANCIA DE LA CLASE ConexionSQL
+    ConexionSQL conexion = new ConexionSQL();
+    
     public JIFFPrivilegio() {
         initComponents();
+        ultimoValor();
+    }
+    
+    //METODO PARA INGRESAR DATOS EN JIIFUsuarios
+    public void insertar() {
+        try{
+            conexion.conectar();
+            String privilegio = jTFPrivilegio.getText();
+            String result = "insert into tbl_privilegios values ('0','"+privilegio+"')";
+            conexion.st.execute(result);
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Error ingresando datos\n" + e);
+        }
+    }
+    
+    //ULTIMO VALOR REGISTRADO
+    public void ultimoValor() {
+        try {
+            conexion.conectar();
+            int idprivilegio;
+            String privilegio;
+            conexion.rs = conexion.st.executeQuery("select * from tbl_privilegios order by id_privilegio asc");
+            if(conexion.rs.last()){
+                idprivilegio = Integer.parseInt(conexion.rs.getString("id_privilegio"));
+                jTFIDPrivilegio.setText(idprivilegio+"");
+                privilegio = conexion.rs.getString("nombre_privilegio");
+                jTFPrivilegio.setText(privilegio);
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA RETROCEDER EN LAS CONSULTAS
+    public void retroceder() {
+        try {
+            conexion.conectar();
+            int idprivilegio;
+            String privilegio;
+            if(conexion.rs.previous()){
+                idprivilegio = Integer.parseInt(conexion.rs.getString("id_privilegio"));
+                jTFIDPrivilegio.setText(idprivilegio+"");
+                privilegio = conexion.rs.getString("nombre_privilegio");
+                jTFPrivilegio.setText(privilegio);
+            }else{
+                conexion.rs.next();
+                JOptionPane.showMessageDialog(null, "No hay mas registros");
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA AVANZAR EN LAS CONSULTAS
+    public void avanzar() {
+        try {
+            conexion.conectar();
+            int idprivilegio;
+            String privilegio;
+            if(conexion.rs.next()){
+                idprivilegio = Integer.parseInt(conexion.rs.getString("id_privilegio"));
+                jTFIDPrivilegio.setText(idprivilegio+"");
+                privilegio = conexion.rs.getString("nombre_privilegio");
+                jTFPrivilegio.setText(privilegio);
+            }else{
+                conexion.rs.previous();
+                JOptionPane.showMessageDialog(null, "No hay mas registros");
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA EDITAR
+    public void editar() {
+        try{
+            conexion.conectar();
+            int idprivilegio = Integer.parseInt(jTFIDPrivilegio.getText());
+            String privilegio = jTFPrivilegio.getText();
+            String result = "update tbl_privilegios set nombre_privilegio = '"+privilegio+"' where id_privilegio = "+idprivilegio;
+            conexion.st.execute(result);
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al editar\n" + e);
+        }
+    }
+    
+    //METODO PARA ELIMINAR
+    public void eliminar() {
+        try{
+            conexion.conectar();
+            int opcion = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este registro");
+            if(opcion == 0){
+                /*int idprivilegio = Integer.parseInt(conexion.rs.getString("id_privilegio"));
+                String result = "delete from tbl_privilegios where id_privilegio = "+idprivilegio;
+                conexion.st.execute(result);*/
+            }
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar\n" + e);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -115,40 +233,27 @@ public class JIFFPrivilegio extends javax.swing.JInternalFrame {
     private void jBGuardarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarNuevoActionPerformed
         // GUARDAR Y NUEVO:
 
-        /*
         insertar();
-        jTFNombre.setText("");
-        jPFPassword.setText("");
-        jPFConfirmarPW.setText("");
-        jCBRol.setSelectedIndex(0);
-        jCBEmpresa.setSelectedIndex(0);
-        */
+        jTFPrivilegio.setText("");
 
     }//GEN-LAST:event_jBGuardarNuevoActionPerformed
 
     private void jBGuardarCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarCerrarActionPerformed
         // GUARDAR Y CERRAR:
 
-        /*
         if(editar){
             editar();
         }else{
             insertar();
         }
         this.show(false);
-        */
 
     }//GEN-LAST:event_jBGuardarCerrarActionPerformed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         // AGREGAR:
 
-        /*
-        jTFNombre.setEnabled(true);
-        jPFPassword.setEnabled(true);
-        jPFConfirmarPW.setEnabled(true);
-        jCBRol.setEnabled(true);
-        jCBEmpresa.setEnabled(true);
+        jTFPrivilegio.setEnabled(true);
         jBGuardarNuevo.setEnabled(true);
         jBGuardarCerrar.setEnabled(true);
         jBAgregar.setEnabled(false);
@@ -156,45 +261,36 @@ public class JIFFPrivilegio extends javax.swing.JInternalFrame {
         jBRetroceder.setEnabled(false);
         jBAvanzar.setEnabled(false);
         jBEditar.setEnabled(false);
-        jTFNombre.setText("");
-        jPFPassword.setText("");
-        jPFConfirmarPW.setText("");
-        jCBRol.setSelectedIndex(0);
-        jCBEmpresa.setSelectedIndex(0);
-        */
+        jTFIDPrivilegio.setText("");
+        jTFPrivilegio.setText("");
 
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // ELIMINAR:
 
-        //eliminar();
+        eliminar();
 
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetrocederActionPerformed
         // RETROCEDER:
 
-        //retroceder();
+        retroceder();
 
     }//GEN-LAST:event_jBRetrocederActionPerformed
 
     private void jBAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAvanzarActionPerformed
         // AVANZAR:
 
-        //avanzar();
+        avanzar();
 
     }//GEN-LAST:event_jBAvanzarActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         // EDITAR:
 
-        /*
-        jTFNombre.setEnabled(true);
-        jPFPassword.setEnabled(true);
-        jPFConfirmarPW.setEnabled(true);
-        jCBRol.setEnabled(true);
-        jCBEmpresa.setEnabled(true);
+        jTFPrivilegio.setEnabled(true);
         jBGuardarNuevo.setEnabled(false);
         jBGuardarCerrar.setEnabled(true);
         jBAgregar.setEnabled(false);
@@ -203,7 +299,6 @@ public class JIFFPrivilegio extends javax.swing.JInternalFrame {
         jBAvanzar.setEnabled(false);
         jBEditar.setEnabled(false);
         editar = true;
-        */
 
     }//GEN-LAST:event_jBEditarActionPerformed
 
