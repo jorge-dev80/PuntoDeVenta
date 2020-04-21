@@ -1,9 +1,143 @@
 package sistemapos;
 
+import java.sql.*;
+import javax.swing.*;
+
+
 public class JIFFEmpresa extends javax.swing.JInternalFrame {
 
+    //CREAMOS VARIABLES
+    boolean editar = false;
+    
+    //INSTANCIA DE LA CLASE ConexionSQL
+    ConexionSQL conexion = new ConexionSQL();
+    
     public JIFFEmpresa() {
         initComponents();
+        ultimoValor();
+    }
+    
+    //METODO PARA INGRESAR DATOS EN JIIFUsuarios
+    public void insertar() {
+        try{
+            conexion.conectar();
+            String nombre = jTFNombre.getText();
+            String rfc = jTFRFC.getText();
+            String giro = jTFGiro.getText();
+            String result = "insert into tbl_empresas values ('0','"+nombre+"','"+rfc+"','"+giro+"')";
+            conexion.st.execute(result);
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Error ingresando datos\n" + e);
+        }
+    }
+    
+    //ULTIMO VALOR REGISTRADO
+    public void ultimoValor() {
+        try {
+            conexion.conectar();
+            int idempresa;
+            String nombre, rfc, giro;
+            conexion.rs = conexion.st.executeQuery("select * from tbl_empresas order by id_empresa asc");
+            if(conexion.rs.last()){
+                idempresa = Integer.parseInt(conexion.rs.getString("id_empresa"));
+                jTFIDEmpresa.setText(idempresa+"");
+                nombre = conexion.rs.getString("nombre_empresa");
+                jTFNombre.setText(nombre);
+                rfc = conexion.rs.getString("rfc");
+                jTFRFC.setText(rfc);
+                giro = conexion.rs.getString("giro");
+                jTFGiro.setText(giro);
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA RETROCEDER EN LAS CONSULTAS
+    public void retroceder() {
+        try {
+            conexion.conectar();
+            String nombre, rfc, giro;
+            int idempresa;
+            if(conexion.rs.previous()){
+                idempresa = Integer.parseInt(conexion.rs.getString("id_empresa"));
+                jTFIDEmpresa.setText(idempresa+"");
+                nombre = conexion.rs.getString("nombre_empresa");
+                jTFNombre.setText(nombre);
+                rfc = conexion.rs.getString("rfc");
+                jTFRFC.setText(rfc);
+                giro = conexion.rs.getString("giro");
+                jTFGiro.setText(giro);
+            }else{
+                conexion.rs.next();
+                JOptionPane.showMessageDialog(null, "No hay mas registros");
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA AVANZAR EN LAS CONSULTAS
+    public void avanzar() {
+        try {
+            conexion.conectar();
+            String nombre, rfc, giro;
+            int idempresa;
+            if(conexion.rs.next()){
+                idempresa = Integer.parseInt(conexion.rs.getString("id_empresa"));
+                jTFIDEmpresa.setText(idempresa+"");
+                nombre = conexion.rs.getString("nombre_empresa");
+                jTFNombre.setText(nombre);
+                rfc = conexion.rs.getString("rfc");
+                jTFRFC.setText(rfc);
+                giro = conexion.rs.getString("giro");
+                jTFGiro.setText(giro);
+            }else{
+                conexion.rs.previous();
+                JOptionPane.showMessageDialog(null, "No hay mas registros");
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA EDITAR
+    public void editar() {
+        try{
+            conexion.conectar();
+            int idempresa = Integer.parseInt(jTFIDEmpresa.getText());
+            String nombre = jTFNombre.getText();
+            String rfc = jTFRFC.getText();
+            String giro = jTFGiro.getText();
+            String result = "update tbl_empresas set nombre_empresa = '"+nombre+"', rfc = '"+rfc+"', giro = '"+giro+"' where id_empresa = "+idempresa;
+            conexion.st.execute(result);
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al editar\n" + e);
+        }
+    }
+    
+    //METODO PARA ELIMINAR
+    public void eliminar() {
+        try{
+            conexion.conectar();
+            int opcion = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este registro");
+            if(opcion == 0){
+                /*int idempresa = Integer.parseInt(conexion.rs.getString("id_empresa"));
+                String result = "delete from tbl_empresas where id_empresa = "+idempresa;
+                conexion.st.execute(result);*/
+            }
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar\n" + e);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -133,40 +267,32 @@ public class JIFFEmpresa extends javax.swing.JInternalFrame {
     private void jBGuardarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarNuevoActionPerformed
         // GUARDAR Y NUEVO:
 
-        /*
         insertar();
+        jTFIDEmpresa.setText("");
         jTFNombre.setText("");
-        jPFPassword.setText("");
-        jPFConfirmarPW.setText("");
-        jCBRol.setSelectedIndex(0);
-        jCBEmpresa.setSelectedIndex(0);
-        */
+        jTFRFC.setText("");
+        jTFGiro.setText("");
 
     }//GEN-LAST:event_jBGuardarNuevoActionPerformed
 
     private void jBGuardarCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarCerrarActionPerformed
         // GUARDAR Y CERRAR:
 
-        /*
         if(editar){
             editar();
         }else{
             insertar();
         }
         this.show(false);
-        */
 
     }//GEN-LAST:event_jBGuardarCerrarActionPerformed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         // AGREGAR:
 
-        /*
         jTFNombre.setEnabled(true);
-        jPFPassword.setEnabled(true);
-        jPFConfirmarPW.setEnabled(true);
-        jCBRol.setEnabled(true);
-        jCBEmpresa.setEnabled(true);
+        jTFRFC.setEnabled(true);
+        jTFGiro.setEnabled(true);
         jBGuardarNuevo.setEnabled(true);
         jBGuardarCerrar.setEnabled(true);
         jBAgregar.setEnabled(false);
@@ -174,45 +300,40 @@ public class JIFFEmpresa extends javax.swing.JInternalFrame {
         jBRetroceder.setEnabled(false);
         jBAvanzar.setEnabled(false);
         jBEditar.setEnabled(false);
+        jTFIDEmpresa.setText("");
         jTFNombre.setText("");
-        jPFPassword.setText("");
-        jPFConfirmarPW.setText("");
-        jCBRol.setSelectedIndex(0);
-        jCBEmpresa.setSelectedIndex(0);
-        */
+        jTFRFC.setText("");
+        jTFGiro.setText("");
 
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // ELIMINAR:
 
-        //eliminar();
+        eliminar();
 
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRetrocederActionPerformed
         // RETROCEDER:
 
-        //retroceder();
+        retroceder();
 
     }//GEN-LAST:event_jBRetrocederActionPerformed
 
     private void jBAvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAvanzarActionPerformed
         // AVANZAR:
 
-        //avanzar();
+        avanzar();
 
     }//GEN-LAST:event_jBAvanzarActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         // EDITAR:
 
-        /*
         jTFNombre.setEnabled(true);
-        jPFPassword.setEnabled(true);
-        jPFConfirmarPW.setEnabled(true);
-        jCBRol.setEnabled(true);
-        jCBEmpresa.setEnabled(true);
+        jTFRFC.setEnabled(true);
+        jTFGiro.setEnabled(true);
         jBGuardarNuevo.setEnabled(false);
         jBGuardarCerrar.setEnabled(true);
         jBAgregar.setEnabled(false);
@@ -221,7 +342,6 @@ public class JIFFEmpresa extends javax.swing.JInternalFrame {
         jBAvanzar.setEnabled(false);
         jBEditar.setEnabled(false);
         editar = true;
-        */
 
     }//GEN-LAST:event_jBEditarActionPerformed
 
