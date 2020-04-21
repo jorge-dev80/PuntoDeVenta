@@ -1,9 +1,133 @@
 package sistemapos;
 
+import java.sql.*;
+import javax.swing.*;
+
+
 public class JIFFEmpresa extends javax.swing.JInternalFrame {
 
+    //CREAMOS VARIABLES
+    boolean editar = false;
+    
+    //INSTANCIA DE LA CLASE ConexionSQL
+    ConexionSQL conexion = new ConexionSQL();
+    
     public JIFFEmpresa() {
         initComponents();
+        ultimoValor();
+    }
+    
+    //METODO PARA INGRESAR DATOS EN JIIFUsuarios
+    public void insertar() {
+        try{
+            conexion.conectar();
+            String nombre = jTFNombre.getText();
+            String rfc = jTFRFC.getText();
+            String giro = jTFGiro.getText();
+            String result = "insert into tbl_empresas values ('0','"+nombre+"','"+rfc+"','"+giro+"')";
+            conexion.st.execute(result);
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Error ingresando datos\n" + e);
+        }
+    }
+    
+    //ULTIMO VALOR REGISTRADO
+    public void ultimoValor() {
+        try {
+            conexion.conectar();
+            int idempresa;
+            String nombre, rfc, giro;
+            conexion.rs = conexion.st.executeQuery("select * from tbl_empresas order by id_empresa asc");
+            if(conexion.rs.last()){
+                idempresa = Integer.parseInt(conexion.rs.getString("id_empresa"));
+                jTFIDEmpresa.setText(idempresa+"");
+                nombre = conexion.rs.getString("nombre_empresa");
+                jTFNombre.setText(nombre);
+                rfc = conexion.rs.getString("rfc");
+                jTFRFC.setText(rfc);
+                giro = conexion.rs.getString("giro");
+                jTFGiro.setText(giro);
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA RETROCEDER EN LAS CONSULTAS
+    public void retroceder() {
+        try {
+            conexion.conectar();
+            String rol;
+            int idrol;
+            if(conexion.rs.previous()){
+                idrol = Integer.parseInt(conexion.rs.getString("id_rol"));
+                //jTFIDRol.setText(idrol+"");
+                rol = conexion.rs.getString("nombre_rol");
+                //jTFRol.setText(rol);
+            }else{
+                conexion.rs.next();
+                JOptionPane.showMessageDialog(null, "No hay mas registros");
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA AVANZAR EN LAS CONSULTAS
+    public void avanzar() {
+        try {
+            conexion.conectar();
+            String rol;
+            int idrol;
+            if(conexion.rs.next()){
+                idrol = Integer.parseInt(conexion.rs.getString("id_rol"));
+                //jTFIDRol.setText(idrol+"");
+                rol = conexion.rs.getString("nombre_rol");
+                //jTFRol.setText(rol);
+            }else{
+                conexion.rs.previous();
+                JOptionPane.showMessageDialog(null, "No hay mas registros");
+            }
+            conexion.cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error consultando tabla\n" + e);
+        }
+    }
+    
+    //METODO PARA EDITAR
+    public void editar() {
+        try{
+            conexion.conectar();
+            //int idrol = Integer.parseInt(jTFIDRol.getText());
+            //String rol = jTFRol.getText();
+            //String result = "update tbl_roles set nombre_rol = '"+rol+"' where id_rol = "+idrol;
+            //conexion.st.execute(result);
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al editar\n" + e);
+        }
+    }
+    
+    //METODO PARA ELIMINAR
+    public void eliminar() {
+        try{
+            conexion.conectar();
+            int opcion = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este registro");
+            if(opcion == 0){
+                /*int idrol = Integer.parseInt(rs.getString("id_rol"));
+                String result = "delete from tbl_roles where id_rol = "+idrol;
+                st.execute(result);*/
+            }
+            conexion.cn.close();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al eliminar\n" + e);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -133,14 +257,11 @@ public class JIFFEmpresa extends javax.swing.JInternalFrame {
     private void jBGuardarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarNuevoActionPerformed
         // GUARDAR Y NUEVO:
 
-        /*
         insertar();
+        jTFIDEmpresa.setText("");
         jTFNombre.setText("");
-        jPFPassword.setText("");
-        jPFConfirmarPW.setText("");
-        jCBRol.setSelectedIndex(0);
-        jCBEmpresa.setSelectedIndex(0);
-        */
+        jTFRFC.setText("");
+        jTFGiro.setText("");
 
     }//GEN-LAST:event_jBGuardarNuevoActionPerformed
 
