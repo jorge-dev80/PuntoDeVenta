@@ -10,4 +10,6 @@ El desarrollo de este sistema es con fines escolares y de practica por lo tanto 
 
 1.-Se completo el módulo de usuario, por el momento cumple con su función pero se piensa hacer cambios a futuro
 
-2.-Se comenzo con la programación de las funciones del modulo de rol
+2.-Se completaron los módulos de roles, empresas, privilegios y países
+
+3.-Se agregarán nuevos módulos al proyecto
